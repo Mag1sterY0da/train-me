@@ -1,3 +1,4 @@
+import { ITrainedModel } from '../interfaces/ITrainedModel.ts';
 import { ITrainingType } from '../interfaces/ITrainingType.ts';
 import { IUser } from '../interfaces/IUser.ts';
 import { IWorkout } from '../interfaces/IWorkoutData.ts';
@@ -419,5 +420,49 @@ export const pushCompletedTraining = async (
   } catch (err) {
     console.log('An error occurred while pushing a training.');
     return { success: false, error: 'Unknown error in the pushTraining' };
+  }
+};
+
+type ModelResponse = {
+  success: boolean;
+  model?: ITrainedModel;
+  error?: string;
+};
+
+export const getModel = async (): Promise<ModelResponse> => {
+  try {
+    const response = await fetch(`${API_URL}/model`);
+
+    if (response.ok) {
+      const model = await response.json();
+      return { success: true, model };
+    } else {
+      return { success: false, error: 'Model was not found' };
+    }
+  } catch (err) {
+    return { success: false, error: 'Unknown error in getModel' };
+  }
+};
+
+export const addModel = async (model: string): Promise<ModelResponse> => {
+  try {
+    const response = await fetch(`${API_URL}/model`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        model,
+      }),
+    });
+
+    if (response.ok) {
+      const model = await response.json();
+      return { success: true, model };
+    } else {
+      return { success: false, error: 'Model was not added' };
+    }
+  } catch (err) {
+    return { success: false, error: 'Unknown error in addModel' };
   }
 };

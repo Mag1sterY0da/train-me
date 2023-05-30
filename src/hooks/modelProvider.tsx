@@ -13,8 +13,10 @@ export const ModelProvider: React.FC<ModelProviderProps> = ({ children }) => {
   const [trained, setTrained] = useState(false);
 
   const startTrainOfModel = async () => {
-    const trainedModel = await trainModel();
-    setModel(trainedModel);
+    // const loadedModel = await loadModel();
+    // console.log('loadedModel', loadedModel);
+    // setModel(loadedModel ?? (await trainModel()));
+    setModel(await trainModel());
     setTrained(true);
   };
 

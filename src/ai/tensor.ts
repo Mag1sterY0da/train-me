@@ -219,6 +219,7 @@ export const trainModel = async () => {
 
   const epochs = 50;
   const batchSize = 4;
+
   await model.fit(
     tf.tensor2d(trainingFeatures, [trainingFeatures.length, 1]),
     tf.tensor2d(trainingLabels, [trainingLabels.length, 5]),
@@ -228,10 +229,29 @@ export const trainModel = async () => {
     }
   );
 
+  console.log('Model trained');
+
+  model.save('localstorage://my-model');
+
   return model;
 };
 
-// export const runPrediction = async (user: IUser): Promise<void> => {
-//   const model = await trainModel();
-//   await makePrediction(model, user);
-// };
+export const loadModel = async (): Promise<tf.Sequential> => {
+  try {
+    const model = await tf.loadLayersModel('localstorage://my-model');
+
+    // LayersModel to Sequential
+    const newModel = tf.sequential();
+
+    for (const layer of model.layers) {
+      newModel.add(layer);
+    }
+
+    newModel.compile({ optimizer: 'adam', loss: 'meanSquaredError' });
+
+    return newModel;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};

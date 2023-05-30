@@ -44,7 +44,6 @@ const App = () => {
 
   useEffect(() => {
     if (!trained) startTrainOfModel();
-    console.log('trained', trained);
   }, [startTrainOfModel, trained]);
 
   return (
