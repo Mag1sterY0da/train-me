@@ -32,7 +32,7 @@ const WelcomePage = () => {
         <Box sx={{ mb: '2.4rem' }}>
           <Box sx={{ display: 'flex', justifyContent: 'center' }}>
             <img
-              src='src\images\main-logo.svg'
+              src='public/main-logo.svg'
               alt='Train.me logo'
               style={{ maxWidth: '100%', height: 'auto' }}
             />
