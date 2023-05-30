@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "serve": "nodemon --watch 'src/api' --esm src/api/server.ts",
-    "start": "node src/api/server.ts",
+    "start": "ts-node --esm src/api/server.ts",
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",

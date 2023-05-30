@@ -3,7 +3,7 @@ import { ITrainingType } from '../interfaces/ITrainingType.ts';
 import { IUser } from '../interfaces/IUser.ts';
 import { IWorkout } from '../interfaces/IWorkoutData.ts';
 
-const API_URL = 'http://localhost:3000';
+const API_URL = 'https://train-me-backend.onrender.com/';
 
 export type SignInSignUpResponse = {
   success: boolean;
