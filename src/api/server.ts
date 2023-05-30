@@ -15,7 +15,7 @@ const MONGO_URL = `mongodb+srv://${DB_USER}:${PASSWORD}@cluster0.94h91kq.mongodb
 
 const app: Application = express();
 app.use(express.json({ limit: '10mb' }));
-app.use(cors({ origin: 'http://localhost:5173' }));
+app.use(cors());
 app.use(userRoutes);
 app.use(friendsRoutes);
 app.use(trainingRoutes);
